@@ -1,0 +1,26 @@
+.infowindow-content
+	%img.img-polaroid.pull-right{:src => @contributor.avatar_url, :width => 80, :height => 80}
+
+	%h4.contrib-login= @contributor.login
+	%h4.contrib-name= @contributor.name
+
+	%a.more-info{:href => "##{@contributor.login}"} More infos...
+
+	.well.well-small
+		%table
+			- unless @contributor.company.nil?
+				%tr
+					%td Company
+					%td 
+						%strong= @contributor.company
+			- unless @contributor.blog.nil?
+				%tr
+					%td Website
+					%td 
+						%a{:href=>"#{@contributor.blog}"}= @contributor.blog
+			- if !@contributor.email.nil? && !@contributor.email.empty?
+				%tr
+					%td Contact
+					%td 
+						%a{:href=>"mailto:#{@contributor.email}"}= @contributor.email
+		

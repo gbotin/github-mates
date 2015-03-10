@@ -1,0 +1,46 @@
+
+=render "shared/side"
+
+#map.thumbnail
+  #map-canvas
+  #map-config
+    %input{:type => :hidden, :name => 'config[user]', :value => params[:user] }
+    %input{:type => :hidden, :name => 'config[repo]', :value => params[:repo] }
+
+.clearfix
+%hr
+
+- if @repository && @repository.lost_contributors.any?
+  %h3 The forgotten ones...
+  .lost-ones.well
+    %ul.thumbnails
+      - @repository.lost_contributors.each do |lost_contributor|
+        %li.span4
+          .thumbnail
+            .infowindow-content
+              %img.img-polaroid.pull-right{:src => lost_contributor.avatar_url, :width => 80, :height => 80}
+
+              .infos
+                %h3.contrib-login= lost_contributor.login
+                %h4.contrib-name= lost_contributor.name
+
+              %a.more-info{:href => "##{lost_contributor.login}"} More infos...
+
+              .well.well-small
+                %table
+                  - unless lost_contributor.company.nil?
+                    %tr
+                      %td Company
+                      %td 
+                        %strong= lost_contributor.company
+                  - unless lost_contributor.blog.nil?
+                    %tr
+                      %td Website
+                      %td 
+                        %a{:href=>"#{lost_contributor.blog}"}= lost_contributor.blog
+                  - unless lost_contributor.email.nil?
+                    %tr
+                      %td Contact
+                      %td 
+                        %a{:href=>"mailto:#{lost_contributor.email}"}= lost_contributor.email
+

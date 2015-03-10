@@ -1,0 +1,32 @@
+!!! 5
+!= cc_html do
+  %head
+    
+    %meta{ :charset => 'utf-8' }
+    %meta{ :name => 'description',  :content => "Github Mates - Novagile RoR Test - 2012" }
+    %meta{ :name => 'keywords',     :content => "Github, mates, novagile" }
+    %meta{ :name => 'viewport',     :content => "width=device-width, initial-scale=1, maximum-scale=1" }
+    
+    =stylesheet_link_tag    "application", :media => "all"
+    =javascript_include_tag "application", "https://maps.googleapis.com/maps/api/js?sensor=false"
+
+    =csrf_meta_tags
+    
+  %body
+    #main
+      =render "shared/header"
+
+      - if @repository && @repository.errors.any?
+        #alert-container
+          .alert.alert-block.fade.in
+            %button{:type=>"button", :class=>"close", :data => {:dismiss=>"alert"}} ×
+            %h4 Argh !
+            %br
+            %span= @repository.errors.full_messages.first
+
+      .content.well
+        .container-fluid
+          .row-fluid
+            =yield
+        
+      =render "shared/footer"

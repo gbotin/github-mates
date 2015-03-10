@@ -1,0 +1,52 @@
+%img.img-polaroid.pull-right{:src => @contributor.avatar_url, :width => 80, :height => 80}
+
+%h4.contrib-login= @contributor.login
+%h4.contrib-name= @contributor.name
+
+.well.well-small
+  %table
+    - unless @contributor.company.nil?
+      %tr
+        %td Company
+        %td 
+          %strong= @contributor.company
+    - unless @contributor.blog.nil?
+      %tr
+        %td Website
+        %td 
+          %a{:href=>"#{@contributor.blog}"}= truncate(@contributor.blog, :length => 26)
+    - if !@contributor.email.nil? && !@contributor.email.empty?
+      %tr
+        %td Contact
+        %td 
+          %a{:href=>"mailto:#{@contributor.email}"}= truncate(@contributor.email, :length => 24)
+
+
+#accordion.accordion
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{:href => "#collapseOne", :data => {:toggle => "collapse", :parent=>"#accordion"}} Repositories
+    #collapseOne.accordion-body.collapse
+      .accordion-inner
+        %ul
+          -@contributor.repos.each do |repo|
+            %li
+              %a{:href=> repo.html_url, :target => "_blank" }= truncate(repo.name, :length => 25)
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{:href => "#collapseTwo", :data => {:toggle => "collapse", :parent=>"#accordion"}} Followers
+    #collapseTwo.accordion-body.collapse
+      .accordion-inner
+        %ul
+          -@contributor.followers.each do |follower|
+            %li
+              %a{:href=> "http://github.com/#{follower.login}", :target => "_blank" }= truncate(follower.login, :length => 25)
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{:href => "#collapseThree", :data => {:toggle => "collapse", :parent=>"#accordion"}} Gists
+    #collapseThree.accordion-body.collapse
+      .accordion-inner
+        %ul
+          -@contributor.gists.each do |gist|
+            %li
+              %a{:href=> gist.html_url, :target => "_blank" }= gist.description.nil? || gist.description.empty? ? gist.id : truncate(gist.description, :length => 25)

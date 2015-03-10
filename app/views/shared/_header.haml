@@ -1,0 +1,15 @@
+#header
+  .navbar
+    .navbar-inner
+      .container-fluid
+        %button{:class => "btn btn-navbar", :type => "button", :data => { :target => ".nav-collapse", :toggle=>"collapse"}}
+          %span{:class=>"icon-bar"}
+          %span{:class=>"icon-bar"}
+          %span{:class=>"icon-bar"}
+        %a.brand{ :href => root_path } Github Mates
+        %ul.nav.nav-collapse.collapse.pull-right
+          %li
+            =form_tag(search_path, :class=>"navbar-form") do
+              %input{:type=>"text", :name => :user, :placeholder=>"Github user", :required => true, :value => params[:user]}
+              %input{:type=>"text", :name => :repo, :placeholder=>"Github repo", :required => true, :value => params[:repo]}
+              %button{:type=>"submit", :class=>"btn btn-primary"} Find them !

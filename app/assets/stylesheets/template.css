@@ -1,0 +1,31 @@
+#main{ width: 80%; margin: auto; padding: 10px; }
+
+#footer{ width: 96%; margin: auto; color: #666; }
+
+#map-canvas{ height: 500px; }
+#map-canvas img{max-width: none;}
+
+#side{ height: 500px; }
+#side .thumbnail{ height: 100%; }
+#side .content {margin: 20px 2px; height: 100%;}
+#side .content .progress{ margin: 100% auto; width: 80%;}
+#side .well {margin: 35px 0 2px;}
+#side .accordion ul {max-height: 140px; overflow: auto; margin: 0 0 10px 5px; }
+
+.infowindow-content{ margin: 10px; }
+.infowindow-content .well{ margin-top: 15px; margin-bottom: 0px;min-height: 110px;}
+.infowindow-content td{	padding: 5px;}
+.infowindow-content .infos{	min-height: 90px;}
+
+.contrib-login:before{padding-right: 5px;content: url(github_icon.png);}
+
+.contrib-name:before{padding-right: 5px;content: url(user_silhouette.png);}
+
+.thumbnails > li{ margin-bottom: 10px;margin-top: 10px;}
+.thumbnails .span4{ margin-left: 5px; margin-right: 10px;}
+
+.lost-ones
+[class*="span"]:first-child { margin-left: 5px; }
+.lost-ones{	max-height: 285px;	overflow: auto}
+
+.icon-remove{cursor: hand;}
